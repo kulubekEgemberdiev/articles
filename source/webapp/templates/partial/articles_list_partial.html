@@ -3,8 +3,16 @@
     {% for article in articles %}
         <div class="col-12 col-md-6 col-lg-4">
             <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ article.title }}</h5>
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    {% if request.user.is_authenticated %}
+                    <div class="text-end">
+                        <button name="like-dislike-btn" class="btn btn-outline-danger">
+                            <span class="material-symbols-outlined" style="font-size: 25px">favorite</span>
+                            <span style="font-size: 25px">1</span>
+                        </button>
+                    </div>
+                    {% endif %}
                 </div>
                 <a href="{{ article.get_absolute_url }}" class="card-link btn btn-primary">Подробнее</a>
             </div>
