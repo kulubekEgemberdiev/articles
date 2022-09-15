@@ -5,14 +5,18 @@
             <div class="card mb-3">
                 <div class="card-body text-center">
                     <h3 class="card-title">{{ article.title }}</h3>
+                <div class="text-end">
+                <span style="font-size: 20px; color: red;" id="{{ article.id }}">Лайки: {{ article.likes.count }}</span>
                     {% if request.user.is_authenticated %}
-                    <div class="text-end">
-                        <button name="like-dislike-btn" class="btn btn-outline-danger">
-                            <span class="material-symbols-outlined" style="font-size: 25px">favorite</span>
-                            <span style="font-size: 25px">1</span>
-                        </button>
-                    </div>
+                    <a data-article-id="article-{{ article.id }}" class="likes btn btn-danger" href="{% url "webapp:likes" article.pk %}">
+                        {% if request.user in article.like.all %}
+                            <span class="material-symbols-outlined">thumb_down</span>
+                        {% else %}
+                            <span class="material-symbols-outlined">thumb_up</span>
+                        {% endif %}
+                    </a>
                     {% endif %}
+                </div>
                 </div>
                 <a href="{{ article.get_absolute_url }}" class="card-link btn btn-primary">Подробнее</a>
             </div>
