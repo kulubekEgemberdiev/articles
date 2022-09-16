@@ -47,6 +47,7 @@ class Comment(BaseModel):
                                on_delete=models.SET_DEFAULT)
     article = models.ForeignKey("webapp.Article", on_delete=models.CASCADE, related_name="comments",
                                 verbose_name="Статья")
+    likes = models.ManyToManyField(get_user_model(), related_name='like_comment', verbose_name='Лайки')
 
     def __str__(self):
         return f"{self.id}. {self.text}: {self.author.username}"
