@@ -21,7 +21,7 @@ async function commentLikesFunc(event) {
 function onLoadFunc() {
     let likes = document.getElementsByClassName("comment-likes");
     for (let i = 0; i < likes.length; i++) {
-        likes[i].addEventListener("click", likesFunc);
+        likes[i].addEventListener("click", commentLikesFunc);
     }
 }
 
